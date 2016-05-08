@@ -15,7 +15,7 @@ var config = {
   devServer: {
     publicPath: '/output/'
   },
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   plugins: []
 };
 
