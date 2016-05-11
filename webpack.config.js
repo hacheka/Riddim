@@ -1,26 +1,25 @@
+var path = require('path');
 var webpack = require('webpack');
 
-var config = {
-  context: __dirname,
-  entry: "./src/app.js",
+module.exports = {
+  devtool: 'source-map',
+  entry: [
+    'webpack-dev-server/client?http://localhost:3000',
+    './src/index'
+  ],
   output: {
-      path: __dirname + '/output',
-      filename: "bundle.js"
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/static/'
+  },
+  resolve: {
+    extensions: ['', '.js', '.ts', '.tsx']
   },
   module: {
-      loaders: [
-         { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader" }
-      ]
-  },
-  devServer: {
-    publicPath: '/output/'
-  },
-  devtool: 'source-map',
-  plugins: []
+    loaders: [{
+      test: /\.tsx?$/,
+      loaders: ['ts-loader'],
+      include: path.join(__dirname, 'src')
+    }]
+  }
 };
-
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(new webpack.optimize.UglifyJsPlugin());
-}
-
-module.exports = config;
