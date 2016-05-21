@@ -50,3 +50,22 @@ html, body {
   font-size: 0.75em;
   font-weight: 400;
 }
+
+.sliced-text span {
+  font-size: 1em;
+  padding-right: 0.25em;
+  padding-left: 0.25em;
+  margin-top: 0.25em;
+  display: inline-block;  
+}
+
+div.paragraph {
+  margin-bottom: 1em;
+}
+
+
+
+
+
+
+

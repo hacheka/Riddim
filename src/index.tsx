@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import {observable, computed, isObservable} from 'mobx';
 import {observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
+import {getColor} from './colorHandler';
 
 interface TextSlice {
     text: string,
@@ -17,7 +18,7 @@ class SlicedText {
 }
 
 class AppState {
-    @observable originalText: string = 'Esto es un texto';
+    @observable originalText: string = 'This sentence has five words. Here are five more words. Five-word sentences are fine. But several together become monotonous. Listen to what is happening. The writing is getting boring. The sound of it drones. It’s like a stuck record. The ear demands some variety.\nNow listen. I vary the sentence length, and I create music. Music. The writing sings. It has a pleasant rhythm, a lilt, a harmony. I use short sentences. And I use sentences of medium length. And sometimes, when I am certain the reader is rested, I will engage him with a sentence of considerable length, a sentence that burns with energy and builds with all the impetus of a crescendo, the roll of the drums, the crash of the cymbals–sounds that say listen to this, it is important.\nGary Provost';
     private separators: RegExp = /([!:?.;])/;
     
     constructor() {}
@@ -59,9 +60,12 @@ class Editor extends React.Component<{appState: AppState}, {}> {
     render () {
         let paragraphs = this.props.appState.slicedText.paragraphs.map(slices => {
             let spans = slices.map(slice => {
-                return <span>{slice.text} ({slice.numberOfWords})</span>;
+                let style = {
+                    backgroundColor: getColor(slice.numberOfWords)
+                };
+                return <span style={style}>{slice.text}</span>;
             });
-            return <div>{spans}</div>;
+            return <div className='paragraph'>{spans}</div>;
         });
         return (
             <div>
