@@ -1,13 +1,14 @@
 let colors: string[] = [];
 
-// colors[1] = 'E8B0D1';
-// colors[2] = 'FFECB3';
-// colors[3] = 'B2DFDB';
-// colors[4] = 'D1C4E9';
-// colors[5] = 'FF4F5A';
-// colors[6] = 'FFF9C4';
-// colors[7] = 'B2EBF2';
-// colors[8] = 'E1B337';
+colors[1] = 'FFC05D';
+colors[2] = 'fbf6bd';
+colors[3] = 'eed1f7';
+colors[4] = '7CF2AA';
+colors[5] = 'f2b3b3';
+colors[6] = 'edd961';
+colors[7] = 'bdcafc';
+colors[8] = 'dbcdeb';
+colors[9] = 'd6f8c0';
 
 function getRandomLightComponent() {
   return Math.floor(Math.random() * 52 + 196);

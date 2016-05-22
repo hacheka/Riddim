@@ -18,7 +18,9 @@ class SlicedText {
 }
 
 class AppState {
-    @observable originalText: string = 'This sentence has five words. Here are five more words. Five-word sentences are fine. But several together become monotonous. Listen to what is happening. The writing is getting boring. The sound of it drones. It’s like a stuck record. The ear demands some variety.\nNow listen. I vary the sentence length, and I create music. Music. The writing sings. It has a pleasant rhythm, a lilt, a harmony. I use short sentences. And I use sentences of medium length. And sometimes, when I am certain the reader is rested, I will engage him with a sentence of considerable length, a sentence that burns with energy and builds with all the impetus of a crescendo, the roll of the drums, the crash of the cymbals–sounds that say listen to this, it is important.\nGary Provost';
+    @observable originalText: string = "This sentence has five words. Here are five more words. Five-word sentences are fine. But several together become monotonous. Listen to what is happening. The writing is getting boring. The sound of it drones. It’s like a stuck record. The ear demands some variety.\nNow listen. I vary the sentence length, and I create music. Music. The writing sings. It has a pleasant rhythm, a lilt, a harmony. I use short sentences. And I use sentences of medium length. And sometimes, when I am certain the reader is rested, I will engage him with a sentence of considerable length, a sentence that burns with energy and builds with all the impetus of a crescendo, the roll of the drums, the crash of the cymbals–sounds that say listen to this, it is important.\nSo write with a combination of short, medium and long sentences. Create a sound that pleases the reader's ear. Don't just write words. Write music.\nGary Provost";
+    //@observable originalText: string = "One. Two two. Three three three. Four four four four. Five five five five five. Six six six six six six. Seven seven seven seven seven seven seven. Eight eight eight eight eight eight eight eight. Nine nine nine nine nine nine nine nine nine. 10 10 10 10 10 10 10 10 10 10. 11 11 11 11 11 11 11 11 11 11 11. 12 12 12 12 12 12 12 12 12 12 12 12. 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13. 14 14 14 14 14 14 14 14 14 14 14 14 14 14. 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15. 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16. 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17.";
+
     private separators: RegExp = /([!:?.;])/;
     
     constructor() {}
@@ -68,10 +70,14 @@ class Editor extends React.Component<{appState: AppState}, {}> {
             return <div className='paragraph'>{spans}</div>;
         });
         return (
-            <div>
-                <textarea defaultValue={this.props.appState.originalText}
-                    onChange={e => this.props.appState.setText((e.target as any).value)}>
-                </textarea>
+            <div className='editor'>
+                <div className='source-text'>
+                    <div className='text-area-wrapper'>
+                        <textarea className='source-input' defaultValue={this.props.appState.originalText}
+                            onChange={e => this.props.appState.setText((e.target as any).value)}>
+                        </textarea>
+                    </div>
+                </div>
                 <div className='sliced-text'>
                     {paragraphs}
                 </div>
@@ -83,4 +89,4 @@ class Editor extends React.Component<{appState: AppState}, {}> {
 
 const appState =  new AppState();
 
-ReactDOM.render(<Editor appState={appState} />, document.getElementById('root'));
+ReactDOM.render(<Editor appState={appState} />, document.getElementById('content'));
